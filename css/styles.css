@@ -1,0 +1,587 @@
+/* ==========================================================================
+   GEONYL - ESTILOS CORPORATIVOS DE ALTA GAMA (SÓLIDO, ELEGANTE & PROFESIONAL)
+   - Cero orbes brillantes ni halos borrosos
+   - Fondo blanco sólido y puro con contraste ejecutivo
+   - Menú móvil 100% opaco y legible
+   - Animaciones personalizadas únicas para cada ícono al pasar el mouse
+   ========================================================================== */
+
+:root {
+  --primary-turquoise: #00d2c4;
+  --primary-turquoise-dark: #009d93;
+  --primary-turquoise-light: #e6fffd;
+  --primary-blue: #0284c7;
+  --primary-blue-dark: #0369a1;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+}
+
+/* Tipografía de Vanguardia */
+.font-display {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #ffffff;
+  color: #0f172a;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection {
+  background-color: #00d2c4;
+  color: #0f172a;
+}
+
+/* Scroll suave Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Scrollbar Sutil y Limpio */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+  border: 2px solid #f8fafc;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00d2c4;
+}
+
+/* Retícula Técnica Arquitectónica Sutil (Líneas Finas Limpias, CERO Orbes) */
+.bg-tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+/* Tarjetas Arquitectónicas Cómodas (Amplitud Interior) */
+.arch-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04), 0 1px 2px 0 rgba(15, 23, 42, 0.02);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.arch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00d2c4, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 1rem 1rem 0 0;
+}
+
+.arch-card:hover::before {
+  opacity: 1;
+}
+
+.arch-card:hover {
+  border-color: #00d2c4;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(0, 210, 196, 0.12);
+}
+
+/* Degradados de Texto de Marca */
+.text-gradient-geonyl {
+  background: linear-gradient(135deg, #0284c7 0%, #009d93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Badges Técnicos Ejecutivos */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: #f0fdfa;
+  color: #0d9488;
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+}
+
+.status-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #00d2c4;
+}
+
+/* Botones Corporativos */
+.btn-brand-primary {
+  background-color: #00d2c4;
+  color: #070d17;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  box-shadow: 0 4px 14px -2px rgba(0, 210, 196, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-brand-primary:hover {
+  background-color: #5efce8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -3px rgba(0, 210, 196, 0.5);
+}
+
+.btn-brand-blue {
+  background-color: #0284c7;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px -2px rgba(2, 132, 199, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-brand-blue:hover {
+  background-color: #0369a1;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -3px rgba(2, 132, 199, 0.4);
+}
+
+/* Botón Flotante de Llamada (Estático y Elegante) */
+.call-floating-btn {
+  box-shadow: 0 8px 24px -4px rgba(0, 210, 196, 0.5);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.call-floating-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 28px -4px rgba(0, 210, 196, 0.65);
+}
+
+/* ==========================================================================
+   ANIMACIONES PERSONALIZADAS DE ÍCONOS AL PASAR EL MOUSE (CARD HOVER)
+   ========================================================================== */
+
+/* 1. Icono Construcción (Edificio): Elevación y expansión estructural */
+.card-construccion .icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-construccion:hover .icon-box {
+  background-color: #00d2c4;
+  color: #070d17;
+  transform: translateY(-5px) scale(1.12);
+  box-shadow: 0 8px 20px -3px rgba(0, 210, 196, 0.45);
+}
+.card-construccion:hover .icon-box svg {
+  animation: buildingRise 0.6s ease-in-out;
+}
+@keyframes buildingRise {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px) scale(1.08); }
+}
+
+/* 2. Icono Mantenimiento (Llave inglesa): Balanceo mecánico de torque */
+.card-mantenimiento .icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-mantenimiento:hover .icon-box {
+  background-color: #0284c7;
+  color: #ffffff;
+  transform: translateY(-5px) scale(1.12);
+  box-shadow: 0 8px 20px -3px rgba(2, 132, 199, 0.45);
+}
+.card-mantenimiento:hover .icon-box svg {
+  animation: wrenchTorque 0.7s ease-in-out;
+}
+@keyframes wrenchTorque {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-35deg) scale(1.15); }
+  60% { transform: rotate(20deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* 3. Icono Maquinarias (Camión pesada): Impulso hidráulico hacia adelante */
+.card-maquinarias .icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-maquinarias:hover .icon-box {
+  background-color: #00a89d;
+  color: #ffffff;
+  transform: translateY(-5px) scale(1.12);
+  box-shadow: 0 8px 20px -3px rgba(0, 168, 157, 0.45);
+}
+.card-maquinarias:hover .icon-box svg {
+  animation: truckDrive 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes truckDrive {
+  0% { transform: translateX(0) translateY(0); }
+  35% { transform: translateX(6px) translateY(-2px); }
+  70% { transform: translateX(2px) translateY(1px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+/* 4. Icono Remodelaciones (Rodillo de pintura): Pincelada suave de ángulo */
+.card-remodelaciones .icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-remodelaciones:hover .icon-box {
+  background-color: #3b82f6;
+  color: #ffffff;
+  transform: translateY(-5px) scale(1.12);
+  box-shadow: 0 8px 20px -3px rgba(59, 130, 246, 0.45);
+}
+.card-remodelaciones:hover .icon-box svg {
+  animation: paintStroke 0.75s ease-in-out;
+}
+@keyframes paintStroke {
+  0% { transform: rotate(0deg) translateY(0); }
+  30% { transform: rotate(-25deg) translateY(-4px); }
+  65% { transform: rotate(15deg) translateY(2px); }
+  100% { transform: rotate(0deg) translateY(0); }
+}
+
+/* 5. Ventajas: Escudo de Garantía (Latido de protección) */
+.card-garantia:hover .icon-box svg {
+  animation: shieldBeat 0.6s ease-in-out;
+}
+@keyframes shieldBeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+/* 6. Ventajas: Reloj Cumplimiento (Giro horario de precisión) */
+.card-plazos:hover .icon-box svg {
+  animation: clockSpin 0.7s ease-in-out;
+}
+@keyframes clockSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 7. Ventajas: Capas Solución 360 (Despliegue vertical) */
+.card-integral:hover .icon-box svg {
+  animation: layersShift 0.6s ease-in-out;
+}
+@keyframes layersShift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 8. Ventajas: Operadores Calificados (Saludo de equipo) */
+.card-operadores:hover .icon-box svg {
+  animation: usersNod 0.6s ease-in-out;
+}
+@keyframes usersNod {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.12); }
+}
+
+/* Menú Móvil - Fondo 100% Blanco Opaco Garantizado */
+#mobile-menu-drawer {
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* ==========================================================================
+   ANIMACIONES PERSONALIZADAS — TARJETAS DE CONTACTO
+   ========================================================================== */
+
+/* Icono base transition compartido */
+.contact-icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Línea Principal (phone-call): timbre vibrante */
+.contact-phone-main:hover .contact-icon-box {
+  background-color: #00d2c4;
+  color: #070d17;
+  transform: translateY(-4px) scale(1.13);
+  box-shadow: 0 8px 20px -3px rgba(0, 210, 196, 0.45);
+}
+.contact-phone-main:hover .contact-icon-box svg {
+  animation: phoneRing 0.55s ease-in-out;
+}
+@keyframes phoneRing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(-18deg) scale(1.1); }
+  45%  { transform: rotate(18deg) scale(1.1); }
+  65%  { transform: rotate(-10deg); }
+  80%  { transform: rotate(8deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Línea Secundaria (phone): vibración horizontal */
+.contact-phone-sec:hover .contact-icon-box {
+  background-color: #0284c7;
+  color: #ffffff;
+  transform: translateY(-4px) scale(1.13);
+  box-shadow: 0 8px 20px -3px rgba(2, 132, 199, 0.45);
+}
+.contact-phone-sec:hover .contact-icon-box svg {
+  animation: phoneVibrate 0.5s ease-in-out;
+}
+@keyframes phoneVibrate {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-4px) rotate(-8deg); }
+  40%       { transform: translateX(4px) rotate(8deg); }
+  60%       { transform: translateX(-3px) rotate(-5deg); }
+  80%       { transform: translateX(2px) rotate(3deg); }
+}
+
+/* Correo (mail): apertura de sobre */
+.contact-email:hover .contact-icon-box {
+  background-color: #475569;
+  color: #ffffff;
+  transform: translateY(-4px) scale(1.13);
+  box-shadow: 0 8px 20px -3px rgba(71, 85, 105, 0.4);
+}
+.contact-email:hover .contact-icon-box svg {
+  animation: mailOpen 0.6s ease-in-out;
+}
+@keyframes mailOpen {
+  0%   { transform: translateY(0) scaleY(1); }
+  30%  { transform: translateY(-4px) scaleY(0.85); }
+  60%  { transform: translateY(1px) scaleY(1.05); }
+  100% { transform: translateY(0) scaleY(1); }
+}
+
+/* ==========================================================================
+   ANIMACIONES PERSONALIZADAS — BARRA DE ESTÁNDARES Y CREDENCIALES
+   ========================================================================== */
+
+.std-icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Ingeniería Certificada (file-check): sello de aprobación */
+.std-cert:hover .std-icon-box {
+  background-color: #00d2c4;
+  color: #070d17;
+  transform: scale(1.2) rotate(-5deg);
+  box-shadow: 0 6px 16px -2px rgba(0, 210, 196, 0.4);
+}
+.std-cert:hover .std-icon-box svg {
+  animation: fileStamp 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes fileStamp {
+  0%   { transform: scale(1) translateY(0); }
+  40%  { transform: scale(1.3) translateY(-3px); }
+  70%  { transform: scale(0.95) translateY(1px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+/* Seguridad Laboral (hard-hat): sacudida de casco */
+.std-safety:hover .std-icon-box {
+  background-color: #0284c7;
+  color: #ffffff;
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 6px 16px -2px rgba(2, 132, 199, 0.4);
+}
+.std-safety:hover .std-icon-box svg {
+  animation: hardHatNod 0.6s ease-in-out;
+}
+@keyframes hardHatNod {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25%       { transform: rotate(-12deg) translateY(-3px); }
+  55%       { transform: rotate(10deg) translateY(1px); }
+  80%       { transform: rotate(-5deg); }
+}
+
+/* Pólizas & Seguros (shield): expansión de protección */
+.std-shield:hover .std-icon-box {
+  background-color: #009d93;
+  color: #ffffff;
+  transform: scale(1.2);
+  box-shadow: 0 6px 16px -2px rgba(0, 157, 147, 0.4);
+}
+.std-shield:hover .std-icon-box svg {
+  animation: shieldPulse 0.65s ease-in-out;
+}
+@keyframes shieldPulse {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.3); }
+  65%  { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+/* Garantía Contractual (badge-check): check que aparece */
+.std-badge:hover .std-icon-box {
+  background-color: #3b82f6;
+  color: #ffffff;
+  transform: scale(1.2) rotate(-4deg);
+  box-shadow: 0 6px 16px -2px rgba(59, 130, 246, 0.4);
+}
+.std-badge:hover .std-icon-box svg {
+  animation: badgePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes badgePop {
+  0%   { transform: scale(0.7) rotate(-15deg); }
+  60%  { transform: scale(1.15) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* ==========================================================================
+   MEJORAS: ANCLAS, FOCO VISIBLE Y GALERÍA DE PROYECTOS
+   ========================================================================== */
+
+/* El header es sticky: evita que tape el título al saltar a una sección */
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Foco de teclado visible en toda la página */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 3px;
+}
+
+/* Galería de proyectos */
+.gallery-item {
+  margin: 0;
+}
+
+.gallery-img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item:hover .gallery-img,
+  .arch-card:hover {
+    transform: none;
+  }
+  html.lenis, html.lenis body { scroll-behavior: auto; }
+}
+
+/* ==========================================================================
+   ANIMACIONES DE ÍCONOS EN BOTONES DE LLAMADA Y WHATSAPP
+   .anim-call -> teléfono que suena | .anim-wa -> burbuja de chat que rebota
+   (barra superior, hero, menú móvil, modal, contacto y botón flotante)
+   ========================================================================== */
+
+.anim-call svg,
+.anim-wa svg,
+.call-floating-btn svg {
+  transform-origin: center;
+}
+
+.anim-call:hover svg,
+.anim-call:focus-visible svg {
+  animation: phoneRing 0.6s ease-in-out;
+}
+
+.anim-wa:hover svg,
+.anim-wa:focus-visible svg {
+  animation: chatPop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes chatPop {
+  0%   { transform: scale(1) rotate(0deg); }
+  30%  { transform: scale(1.3) rotate(-14deg) translateY(-2px); }
+  55%  { transform: scale(0.94) rotate(9deg); }
+  80%  { transform: scale(1.1) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* Botón flotante: suena solo cada pocos segundos y de forma continua al pasar el mouse */
+.call-floating-btn svg {
+  animation: floatRing 4.5s ease-in-out infinite;
+}
+
+.call-floating-btn:hover svg,
+.call-floating-btn:focus-visible svg {
+  animation: phoneRing 0.55s ease-in-out infinite;
+}
+
+@keyframes floatRing {
+  0%, 62%, 100% { transform: rotate(0deg); }
+  65% { transform: rotate(-18deg) scale(1.12); }
+  69% { transform: rotate(16deg) scale(1.12); }
+  73% { transform: rotate(-12deg) scale(1.06); }
+  77% { transform: rotate(10deg); }
+  81% { transform: rotate(-5deg); }
+  85% { transform: rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .call-floating-btn svg,
+  .anim-call:hover svg,
+  .anim-wa:hover svg,
+  .anim-call:focus-visible svg,
+  .anim-wa:focus-visible svg {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   DECORACIÓN DE FONDO: LÍNEAS SUAVES DE CONTORNO (assets/decor/deco-contour.svg)
+   Capa detrás del contenido; no recibe clics. Ajuste la intensidad con --deco-opacity.
+   ========================================================================== */
+
+.deco {
+  position: relative;
+  isolation: isolate;
+  --deco-opacity: 0.9;
+}
+
+.deco::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--deco-opacity);
+  background-image: url('../assets/decor/deco-contour.svg');
+  background-repeat: no-repeat;
+  background-size: max(1100px, 100%) auto;
+}
+
+/* Ondas en la parte inferior (se desvanecen hacia arriba) */
+.deco-hero::before,
+.deco-proyectos::before,
+.deco-contacto::before {
+  background-position: center bottom;
+  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 80%);
+  mask-image: linear-gradient(to top, #000 10%, transparent 80%);
+}
+
+/* Ondas en la parte superior (se desvanecen hacia abajo) */
+.deco-servicios::before,
+.deco-ventajas::before {
+  background-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 80%);
+  mask-image: linear-gradient(to bottom, #000 10%, transparent 80%);
+}
+
+@media (max-width: 640px) {
+  .deco { --deco-opacity: 0.7; }
+}
+
+@media print {
+  .deco::before { display: none; }
+}
