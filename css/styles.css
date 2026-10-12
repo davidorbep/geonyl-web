@@ -571,6 +571,7 @@ textarea:focus-visible {
 }
 
 /* Ondas en la parte superior (se desvanecen hacia abajo) */
+.deco-nosotros::before,
 .deco-servicios::before,
 .deco-ventajas::before {
   background-position: center top;
@@ -584,4 +585,284 @@ textarea:focus-visible {
 
 @media print {
   .deco::before { display: none; }
+}
+
+/* ==========================================================================
+   SERVICIOS (9 TARJETAS): ANIMACIÓN PROPIA DE CADA ÍCONO AL PASAR EL MOUSE
+   ========================================================================== */
+
+.svc-t { --svc-bg: #00d2c4; --svc-fg: #070d17; --svc-shadow: rgba(0, 210, 196, 0.45); }
+.svc-b { --svc-bg: #0284c7; --svc-fg: #ffffff; --svc-shadow: rgba(2, 132, 199, 0.45); }
+
+.svc-card .icon-box {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.svc-card:hover .icon-box {
+  background-color: var(--svc-bg);
+  color: var(--svc-fg);
+  transform: translateY(-5px) scale(1.12);
+  box-shadow: 0 8px 20px -3px var(--svc-shadow);
+}
+.svc-card .icon-box svg { transform-origin: center; }
+
+.svc-1:hover .icon-box svg { animation: buildingRise 0.6s ease-in-out; }          /* edificio sube */
+.svc-2:hover .icon-box svg { animation: doorSwing 0.7s ease-in-out; }             /* puerta se abre */
+.svc-3:hover .icon-box svg { animation: zapFlash 0.6s ease-in-out; }              /* destello eléctrico */
+.svc-4:hover .icon-box svg { animation: cctvScan 0.9s ease-in-out; }              /* cámara barre */
+.svc-5:hover .icon-box svg { animation: badgePop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1); } /* huella valida */
+.svc-6:hover .icon-box svg { animation: anchorSwing 0.8s ease-in-out; }           /* ancla se balancea */
+.svc-7:hover .icon-box svg { animation: dropFall 0.7s ease-in; }                  /* gota cae */
+.svc-8:hover .icon-box svg { animation: fanSpin 0.8s ease-in-out; }               /* ventilador gira */
+.svc-9:hover .icon-box svg { animation: paintStroke 0.75s ease-in-out; }          /* trazo de diseño */
+
+@keyframes doorSwing {
+  0%, 100% { transform: perspective(60px) rotateY(0deg); }
+  45% { transform: perspective(60px) rotateY(-38deg) scale(1.08); }
+}
+@keyframes zapFlash {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(1.3) rotate(-8deg); }
+  40%  { transform: scale(0.95) rotate(6deg); }
+  60%  { transform: scale(1.2) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@keyframes cctvScan {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-16deg); }
+  60% { transform: rotate(14deg); }
+  85% { transform: rotate(-4deg); }
+}
+@keyframes anchorSwing {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-22deg); }
+  55% { transform: rotate(16deg); }
+  80% { transform: rotate(-6deg); }
+}
+@keyframes dropFall {
+  0%   { transform: translateY(0) scale(1); opacity: 1; }
+  45%  { transform: translateY(8px) scale(0.9); opacity: 0; }
+  46%  { transform: translateY(-8px) scale(0.9); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes fanSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Nosotros / sectores: elevación suave del ícono */
+.pop-card .icon-box,
+.pop-card svg {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.pop-card:hover .icon-box { transform: translateY(-4px) scale(1.1); }
+.pop-card:hover > svg,
+.pop-card:hover svg:first-child { transform: scale(1.2) rotate(-6deg); }
+
+/* Tarjeta de ubicación: el marcador "salta" */
+.contact-address:hover .contact-icon-box {
+  background-color: #00d2c4;
+  color: #070d17;
+  transform: translateY(-4px) scale(1.13);
+  box-shadow: 0 8px 20px -3px rgba(0, 210, 196, 0.45);
+}
+.contact-address:hover .contact-icon-box svg { animation: pinBounce 0.6s ease-in-out; }
+@keyframes pinBounce {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(-6px) scale(1.1); }
+  65% { transform: translateY(1px) scale(0.96); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svc-card:hover .icon-box svg,
+  .contact-address:hover .contact-icon-box svg { animation: none; }
+}
+
+/* ==========================================================================
+   REDES SOCIALES (Facebook / TikTok)
+   ========================================================================== */
+
+.social-btn,
+.social-top {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.social-btn:hover {
+  transform: translateY(-2px);
+}
+.social-btn svg,
+.social-top svg {
+  transform-origin: center;
+}
+.social-btn:hover svg,
+.social-top:hover svg,
+.social-btn:focus-visible svg {
+  animation: socialPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-fb:hover {
+  background-color: #1877f2;
+  border-color: #1877f2;
+  color: #ffffff;
+  box-shadow: 0 8px 20px -4px rgba(24, 119, 242, 0.45);
+}
+.social-tt:hover {
+  background-color: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.4);
+}
+/* En el pie (fondo oscuro) TikTok se resalta con el turquesa de marca */
+.social-tt-dark:hover {
+  background-color: #00d2c4;
+  border-color: #00d2c4;
+  color: #070d17;
+}
+@keyframes socialPop {
+  0%   { transform: scale(1) rotate(0deg); }
+  40%  { transform: scale(1.3) rotate(-10deg); }
+  70%  { transform: scale(0.95) rotate(6deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-btn:hover svg,
+  .social-top:hover svg,
+  .social-btn:focus-visible svg { animation: none; }
+}
+
+/* ==========================================================================
+   TARJETAS AZULES (acento de color para no dejar todo en blanco)
+   ========================================================================== */
+
+.arch-card.card-blue {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border-color: #0369a1;
+  box-shadow: 0 12px 28px -10px rgba(2, 132, 199, 0.5), 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+}
+.arch-card.card-blue:hover {
+  border-color: #00d2c4;
+  box-shadow: 0 18px 36px -10px rgba(2, 132, 199, 0.55), 0 4px 12px -2px rgba(0, 210, 196, 0.2);
+}
+
+/* Tarjeta única de teléfonos */
+.phone-row {
+  transition: background-color 0.25s ease;
+}
+.phone-row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.card-phones .contact-phone-sec:hover .contact-icon-box {
+  background-color: #ffffff;
+  color: #0284c7;
+  box-shadow: 0 8px 20px -3px rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   SECTORES QUE ATENDEMOS
+   ========================================================================== */
+
+.sector-item {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sector-item:hover {
+  border-color: #00d2c4;
+  box-shadow: 0 10px 22px -10px rgba(15, 23, 42, 0.18);
+  transform: translateY(-2px);
+}
+.sector-item .icon-box {
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sector-item:hover .icon-box {
+  background-color: #00d2c4;
+  color: #070d17;
+}
+.sector-cta {
+  transition: background-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  box-shadow: 0 8px 18px -8px rgba(2, 132, 199, 0.55);
+}
+.sector-cta:hover {
+  background-color: #0369a1;
+  transform: translateY(-2px);
+}
+.sector-cta svg {
+  transition: transform 0.25s ease;
+}
+.sector-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ==========================================================================
+   PANEL "ÁREAS DE SERVICIO": ÍCONOS ANIMADOS
+   ========================================================================== */
+
+.adv-row {
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.adv-row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 210, 196, 0.5);
+  transform: translateX(4px);
+}
+.adv-icon {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.adv-icon svg { transform-origin: center; }
+.adv-row:hover .adv-icon {
+  background-color: #00d2c4;
+  color: #070d17;
+  transform: scale(1.15) rotate(-4deg);
+  box-shadow: 0 6px 16px -2px rgba(0, 210, 196, 0.5);
+}
+.adv-1:hover svg { animation: wrenchTorque 0.7s ease-in-out; }   /* herramientas */
+.adv-2:hover svg { animation: hardHatNod 0.6s ease-in-out; }     /* normas de seguridad */
+.adv-3:hover svg { animation: pinBounce 0.6s ease-in-out; }      /* atención nacional */
+.adv-4:hover svg { animation: awardSpin 0.8s ease-in-out; }      /* experiencia */
+@keyframes awardSpin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.25); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ==========================================================================
+   BOTONES FLOTANTES: redes sociales + WhatsApp + llamada
+   ========================================================================== */
+
+.fab-mini {
+  color: #ffffff;
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.35);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.fab-mini:hover {
+  transform: translateY(-3px) scale(1.07);
+  box-shadow: 0 12px 26px -4px rgba(15, 23, 42, 0.45);
+}
+.fab-mini svg { transform-origin: center; }
+.fab-wa { background-color: #25d366; }
+.fab-wa:hover { background-color: #1ebe5a; }
+.fab-redes { background-color: #0f172a; }
+.fab-redes:hover { background-color: #1e293b; }
+.fab-redes svg { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.fab-redes[aria-expanded="true"] svg { transform: rotate(90deg) scale(1.1); }
+.fab-fb { background-color: #1877f2; }
+.fab-tt { background-color: #111827; }
+.fab-mini:hover svg { animation: socialPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.fab-redes:hover svg { animation: none; }
+
+/* Panel desplegable de redes */
+.fab-social-panel {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  transform-origin: bottom center;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0s linear 0.3s;
+}
+.fab-social-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-mini:hover svg,
+  .adv-row:hover svg { animation: none; }
+  .fab-social-panel,
+  .fab-social-panel.is-open { transition: none; }
 }

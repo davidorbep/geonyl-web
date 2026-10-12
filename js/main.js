@@ -286,6 +286,41 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (menuOpen) closeMenu();
   });
 
+  // 8b. Botones "Cotizar" de cada servicio: preseleccionan el servicio en el formulario
+  const serviceSelect = document.getElementById('form-service');
+  document.querySelectorAll('[data-service]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (!serviceSelect) return;
+      const wanted = link.getAttribute('data-service');
+      const exists = Array.from(serviceSelect.options).some((o) => o.value === wanted);
+      if (exists) serviceSelect.value = wanted;
+    });
+  });
+
+  // 8c. Botón flotante de redes sociales (despliega Facebook y TikTok)
+  const fabStack = document.getElementById('fab-stack');
+  const fabToggle = document.getElementById('fab-social-toggle');
+  const fabPanel = document.getElementById('fab-social-panel');
+
+  if (fabStack && fabToggle && fabPanel) {
+    const setFab = (open) => {
+      fabPanel.classList.toggle('is-open', open);
+      fabPanel.setAttribute('aria-hidden', String(!open));
+      fabToggle.setAttribute('aria-expanded', String(open));
+    };
+
+    fabToggle.addEventListener('click', () => setFab(!fabPanel.classList.contains('is-open')));
+    document.addEventListener('click', (e) => {
+      if (!fabStack.contains(e.target)) setFab(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && fabPanel.classList.contains('is-open')) {
+        setFab(false);
+        fabToggle.focus();
+      }
+    });
+  }
+
   // 9. Formulario de Contacto
   const form = document.getElementById('geonyl-contact-form');
   const successAlert = document.getElementById('form-success-message');
