@@ -293,33 +293,183 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!serviceSelect) return;
       const wanted = link.getAttribute('data-service');
       const exists = Array.from(serviceSelect.options).some((o) => o.value === wanted);
-      if (exists) serviceSelect.value = wanted;
+      if (exists) {
+        serviceSelect.value = wanted;
+        serviceSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     });
   });
 
-  // 8c. Botón flotante de redes sociales (despliega Facebook y TikTok)
-  const fabStack = document.getElementById('fab-stack');
-  const fabToggle = document.getElementById('fab-social-toggle');
-  const fabPanel = document.getElementById('fab-social-panel');
+  // 8c. Capa de scroll: progreso de lectura, sección activa en el menú y revelado de títulos
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+    const progressBar = document.getElementById('scroll-progress');
+    if (progressBar) {
+      gsap.to(progressBar, {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: { start: 0, end: 'max', scrub: 0.2 }
+      });
+    }
 
-  if (fabStack && fabToggle && fabPanel) {
-    const setFab = (open) => {
-      fabPanel.classList.toggle('is-open', open);
-      fabPanel.setAttribute('aria-hidden', String(!open));
-      fabToggle.setAttribute('aria-expanded', String(open));
-    };
-
-    fabToggle.addEventListener('click', () => setFab(!fabPanel.classList.contains('is-open')));
-    document.addEventListener('click', (e) => {
-      if (!fabStack.contains(e.target)) setFab(false);
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && fabPanel.classList.contains('is-open')) {
-        setFab(false);
-        fabToggle.focus();
-      }
+    document.querySelectorAll('section:not(#hero) h2, section:not(#hero) h2 + p').forEach((el) => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 18 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+        }
+      );
     });
   }
+
+  if (typeof ScrollTrigger !== 'undefined') {
+    const navLinks = Array.from(document.querySelectorAll('#main-header nav a[href^="#"]'));
+    navLinks.forEach((link) => {
+      const section = document.getElementById(link.getAttribute('href').slice(1));
+      if (!section) return;
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 45%',
+        end: 'bottom 45%',
+        onToggle: (self) => {
+          if (!self.isActive) return;
+          navLinks.forEach((l) => { l.classList.remove('is-active'); l.removeAttribute('aria-current'); });
+          link.classList.add('is-active');
+          link.setAttribute('aria-current', 'true');
+        }
+      });
+    });
+  }
+
+  // 8e. Selector personalizado (reemplaza el desplegable nativo, que no admite estilos)
+  document.querySelectorAll('[data-custom-select]').forEach((wrap) => {
+    const select = wrap.querySelector('select');
+    if (!select) return;
+
+    const uid = select.id || `select-${Math.random().toString(36).slice(2, 7)}`;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.id = `${uid}-button`;
+    button.className = 'select-button';
+    button.setAttribute('aria-haspopup', 'listbox');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-controls', `${uid}-list`);
+    button.innerHTML =
+      '<span class="select-value"></span>' +
+      '<svg class="select-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+    const valueEl = button.querySelector('.select-value');
+
+    const list = document.createElement('ul');
+    list.id = `${uid}-list`;
+    list.className = 'select-list';
+    list.setAttribute('role', 'listbox');
+    list.setAttribute('tabindex', '-1');
+    list.setAttribute('data-lenis-prevent', '');
+    list.hidden = true;
+
+    const options = Array.from(select.options).map((opt, i) => {
+      const li = document.createElement('li');
+      li.id = `${uid}-opt-${i}`;
+      li.className = 'select-option';
+      li.setAttribute('role', 'option');
+      li.dataset.value = opt.value;
+      li.innerHTML =
+        `<span>${opt.textContent}</span>` +
+        '<svg class="select-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+      list.appendChild(li);
+      return li;
+    });
+
+    wrap.appendChild(button);
+    wrap.appendChild(list);
+    wrap.classList.add('is-enhanced');
+    select.setAttribute('tabindex', '-1');
+    select.setAttribute('aria-hidden', 'true');
+
+    const fieldLabel = document.querySelector(`label[for="${select.id}"]`);
+    if (fieldLabel) fieldLabel.setAttribute('for', button.id);
+
+    let activeIndex = select.selectedIndex;
+
+    const setActive = (index) => {
+      activeIndex = Math.max(0, Math.min(options.length - 1, index));
+      options.forEach((o, i) => o.classList.toggle('is-active', i === activeIndex));
+      list.setAttribute('aria-activedescendant', options[activeIndex].id);
+      options[activeIndex].scrollIntoView({ block: 'nearest' });
+    };
+
+    const sync = () => {
+      const idx = Math.max(0, select.selectedIndex);
+      valueEl.textContent = select.options[idx].textContent;
+      options.forEach((o, i) => o.setAttribute('aria-selected', String(i === idx)));
+    };
+
+    const openList = () => {
+      list.hidden = false;
+      button.setAttribute('aria-expanded', 'true');
+      setActive(select.selectedIndex);
+      list.focus({ preventScroll: true });
+    };
+
+    const closeList = (returnFocus = true) => {
+      if (list.hidden) return;
+      list.hidden = true;
+      button.setAttribute('aria-expanded', 'false');
+      if (returnFocus) button.focus({ preventScroll: true });
+    };
+
+    const choose = (index) => {
+      select.selectedIndex = index;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      closeList();
+    };
+
+    button.addEventListener('click', () => (list.hidden ? openList() : closeList()));
+    button.addEventListener('keydown', (e) => {
+      if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) {
+        e.preventDefault();
+        openList();
+      }
+    });
+
+    list.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowDown': e.preventDefault(); setActive(activeIndex + 1); break;
+        case 'ArrowUp': e.preventDefault(); setActive(activeIndex - 1); break;
+        case 'Home': e.preventDefault(); setActive(0); break;
+        case 'End': e.preventDefault(); setActive(options.length - 1); break;
+        case 'Enter':
+        case ' ': e.preventDefault(); choose(activeIndex); break;
+        case 'Escape': e.preventDefault(); e.stopPropagation(); closeList(); break;
+        case 'Tab': closeList(false); break;
+        default: {
+          if (e.key.length === 1 && /\S/.test(e.key)) {
+            const letter = e.key.toLowerCase();
+            const ordered = [...options.slice(activeIndex + 1), ...options.slice(0, activeIndex + 1)];
+            const hit = ordered.find((o) => o.textContent.trim().toLowerCase().startsWith(letter));
+            if (hit) setActive(options.indexOf(hit));
+          }
+        }
+      }
+    });
+
+    options.forEach((o, i) => {
+      o.addEventListener('mousemove', () => setActive(i));
+      o.addEventListener('click', () => choose(i));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target)) closeList(false);
+    });
+
+    select.addEventListener('change', sync);
+    const parentForm = select.closest('form');
+    if (parentForm) parentForm.addEventListener('reset', () => setTimeout(sync, 0));
+    sync();
+  });
 
   // 9. Formulario de Contacto
   const form = document.getElementById('geonyl-contact-form');
@@ -333,8 +483,33 @@ document.addEventListener('DOMContentLoaded', () => {
       const service = document.getElementById('form-service')?.value || 'General';
       const message = document.getElementById('form-message')?.value.trim() || 'Consulta de servicios';
 
+      // Errores en línea, debajo de cada campo
+      const nameInput = document.getElementById('form-name');
+      const phoneInput = document.getElementById('form-phone');
+      const setError = (input, message) => {
+        let err = document.getElementById(`${input.id}-error`);
+        if (!message) {
+          if (err) err.remove();
+          input.removeAttribute('aria-invalid');
+          input.removeAttribute('aria-describedby');
+          return;
+        }
+        if (!err) {
+          err = document.createElement('p');
+          err.id = `${input.id}-error`;
+          err.className = 'field-error';
+          err.setAttribute('role', 'alert');
+          input.insertAdjacentElement('afterend', err);
+        }
+        err.textContent = message;
+        input.setAttribute('aria-invalid', 'true');
+        input.setAttribute('aria-describedby', err.id);
+      };
+
+      setError(nameInput, name ? '' : 'Ingrese su nombre o el de su empresa.');
+      setError(phoneInput, phone ? '' : 'Ingrese un teléfono de contacto.');
       if (!name || !phone) {
-        alert('Por favor complete su Nombre y Teléfono.');
+        (name ? phoneInput : nameInput).focus();
         return;
       }
 
@@ -360,7 +535,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const redirectBox = document.getElementById('form-whatsapp-redirect');
         if (redirectBox) {
           redirectBox.innerHTML = `
-            <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 text-xs font-bold text-[#007c74] hover:text-[#005f58] bg-teal-50 border border-teal-200 px-3.5 py-2 rounded-xl">
+            <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 text-sm font-bold text-[#007c74] hover:text-[#005f58] bg-teal-50 border border-teal-200 px-3.5 py-2 rounded-xl">
               <span>Continuar en WhatsApp con estos datos</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </a>
