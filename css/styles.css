@@ -1160,3 +1160,11 @@ small, .text-xs { letter-spacing: 0.005em; }
 @media print {
   .deco::after { display: none; }
 }
+
+/* Estándares: el texto nunca se sale de la tarjeta en pantallas angostas */
+.std-text {
+  min-width: 0;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
