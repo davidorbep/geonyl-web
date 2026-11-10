@@ -1168,3 +1168,32 @@ small, .text-xs { letter-spacing: 0.005em; }
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+/* ==========================================================================
+   HERO OSCURO CON FOTO DE FONDO
+   ========================================================================== */
+
+.hero-dark h1 .text-gradient-geonyl {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  color: #00d2c4;
+}
+
+/* Botón secundario sobre fondo oscuro */
+.btn-outline-light {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  font-weight: 700;
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+.btn-outline-light:active {
+  transform: translateY(0) scale(0.98);
+}

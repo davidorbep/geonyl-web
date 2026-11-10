@@ -237,63 +237,49 @@
     <!-- =========================================================================
          HERO SECTION: DISTRIBUCIÓN AMPLIA, ESPACIOSA Y EJECUTIVA
          ========================================================================= -->
-    <section id="hero" class="deco deco-hero py-12 sm:py-10 px-4 lg:min-h-[calc(100dvh-7rem)] lg:flex lg:items-center sm:px-6 lg:px-8 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-b border-slate-200">
-      <div class="max-w-7xl mx-auto w-full">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          
-          <!-- Bloque de Texto Principal (Cómodo y Espacioso) -->
-          <div class="lg:col-span-7 flex flex-col items-start space-y-6">
-            
+    <section id="hero" class="deco deco-hero section-dark hero-dark relative py-16 sm:py-20 px-4 sm:px-6 lg:px-8 lg:min-h-[calc(100dvh-7.5rem)] lg:flex lg:items-center border-b border-slate-800">
 
+      <!-- Foto de fondo: assets/hero.jpg (1920 x 1080 px). Si no existe, se ve el fondo azul marino con líneas -->
+      <div id="hero-media" class="absolute inset-0" aria-hidden="true">
+        <img src="assets/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high" decoding="async" onerror="document.getElementById('hero-media').remove()" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/65 to-slate-950/85 lg:bg-gradient-to-r lg:from-slate-950/90 lg:via-slate-950/65 lg:to-slate-950/25"></div>
+      </div>
 
-            <h1 class="hero-anim-item font-display text-3xl sm:text-4xl md:text-5xl lg:text-[2.85rem] font-extrabold text-slate-900 leading-[1.12] tracking-tight">
-              Construcción, Seguridad <span class="text-gradient-geonyl">y Automatización</span>
-            </h1>
+      <div class="relative z-10 max-w-7xl mx-auto w-full">
+        <div class="max-w-2xl flex flex-col items-start space-y-6">
 
-            <p class="hero-anim-item text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-[52ch]">Soluciones integrales de construcción, seguridad electrónica y automatización para empresas, industrias y conjuntos residenciales en todo el país.</p>
+          <h1 class="hero-anim-item font-display text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-white leading-[1.1] tracking-tight">
+            Construcción, Seguridad <span class="text-gradient-geonyl">y Automatización</span>
+          </h1>
 
-            <!-- Acciones de Conversión -->
-            <div class="hero-anim-item flex flex-wrap items-center gap-4 pt-1 w-full sm:w-auto">
-              <button type="button" class="open-call-modal anim-call btn-brand-primary flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-base font-bold shadow-md">
-                <i data-lucide="phone-call" class="w-5 h-5"></i>
-                <span>Llamar Ahora</span>
-              </button>
+          <p class="hero-anim-item text-base sm:text-lg text-slate-200 font-normal leading-relaxed max-w-[52ch]">
+            Soluciones integrales de construcción, seguridad electrónica y automatización para empresas, industrias y conjuntos residenciales en todo el país.
+          </p>
 
-              <a href="https://wa.me/593999202754?text=Hola%20Geonyl,%20solicito%20cotización%20inmediata" target="_blank" rel="noopener noreferrer" class="anim-wa btn-brand-blue flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base font-bold shadow-md">
-                <i data-lucide="message-circle" class="w-5 h-5"></i>
-                <span>Cotizar por WhatsApp</span>
-              </a>
-            </div>
+          <div class="hero-anim-item flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
+            <button type="button" class="open-call-modal anim-call btn-brand-primary flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-base font-bold shadow-md">
+              <i data-lucide="phone-call" class="w-5 h-5"></i>
+              <span>Llamar Ahora</span>
+            </button>
 
+            <a href="https://wa.me/593999202754?text=Hola%20Geonyl,%20solicito%20cotización%20inmediata" target="_blank" rel="noopener noreferrer" class="anim-wa btn-outline-light flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl text-base">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+              <span>Cotizar por WhatsApp</span>
+            </a>
           </div>
 
-          <!-- Showcase Lateral: Tarjeta con el Logo Oficial a Gran Escala -->
-          <div class="lg:col-span-5 flex justify-center">
-            <div class="hero-card-side w-full max-w-lg arch-card rounded-3xl p-6 sm:p-7 bg-white border border-slate-200 shadow-xl flex flex-col justify-between">
-              
-              <!-- Contenedor del Logo de Gran Tamaño (Ocupa todo el contenedor) -->
-              <div class="w-full bg-slate-50/70 rounded-2xl p-3 sm:p-4 border border-slate-200/80 flex items-center justify-center overflow-hidden h-36 sm:h-44">
-                <img src="assets/logo-hero.png" alt="Logo Oficial Geonyl" class="h-full w-auto max-w-full object-contain filter drop-shadow-sm">
-              </div>
-
-              <!-- Indicadores de Desempeño Internos -->
-              <div class="mt-5 grid grid-cols-2 gap-3 text-center">
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center justify-center">
-                  <span class="font-display font-extrabold text-5xl sm:text-6xl text-slate-900 leading-none block">9</span>
-                  <span class="mt-2 text-sm sm:text-base font-bold text-slate-700">Áreas de Servicio</span>
-                </div>
-                <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col items-center justify-center">
-                  <i data-lucide="map-pin" class="w-9 h-9 sm:w-10 sm:h-10 text-[#009D93]"></i>
-                  <span class="mt-2 text-sm sm:text-base font-bold text-slate-700 leading-snug">Atención a nivel nacional</span>
-                </div>
-              </div>
-
+          <div class="hero-card-side grid grid-cols-2 gap-3 w-full max-w-lg pt-4">
+            <div class="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm">
+              <span class="font-display font-extrabold text-4xl sm:text-5xl text-white leading-none">9</span>
+              <span class="text-sm sm:text-base font-bold text-white/90 leading-tight">Áreas de servicio</span>
+            </div>
+            <div class="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm">
+              <i data-lucide="map-pin" class="w-7 h-7 sm:w-8 sm:h-8 shrink-0 text-[#00D2C4]"></i>
+              <span class="text-sm sm:text-base font-bold text-white/90 leading-tight">Atención a nivel nacional</span>
             </div>
           </div>
 
         </div>
-
       </div>
     </section>
 
